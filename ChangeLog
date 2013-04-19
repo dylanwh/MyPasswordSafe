@@ -1,0 +1,1105 @@
+2006-12-16 22:03  nolan
+
+	* tools/cvs2cl.pl: Downloaded the latest version from
+	  http://www.red-bean.com/cvs2cl/ since the prior one that was used
+	  failed to parse a date.
+
+2006-12-16 21:55  nolan
+
+	* src/serializers.cpp: Moving to a 64 bit machine exposed a place
+	  where a long was used where an int should have.
+
+2006-09-25 03:10  nolan
+
+	* doc/file_formats/: formatV1.txt, formatV2.txt, formatV3.txt:
+	  Documents describing Password Safe's file formats
+
+2006-09-25 03:04  nolan
+
+	* src/mypasswordsafe.ui.h: Typedefed QFileDialog to see how easy it
+	  would be to use KDE's dialog
+
+2006-04-12 13:16  nolan
+
+	* src/mypasswordsafe.ui: Fixed an include hint
+
+2006-04-12 13:16  nolan
+
+	* doxygen.conf: Added call graphs
+
+2006-04-06 07:04  nolan
+
+	* MyPasswordSafe.pro, src/clipboard.cpp, src/clipboard.hpp,
+	  src/mypasswordsafe.ui, src/mypasswordsafe.ui.h,
+	  src/pwordeditdlg.ui.h: Fixed a small bug where new passwords did
+	  not get fetched Moved the clipboard handling and clearing into
+	  its own class Changed MyPasswordSafe to use the new clipboard
+	  class Did the same with PwordEditDlg as well
+
+2006-04-06 04:18  nolan
+
+	* src/pwordeditdlg.ui.h: Made the edit confirmation message display
+	  what was actually changed
+
+2006-04-06 04:05  nolan
+
+	* src/mypasswordsafe.ui.h: FIXED: Copying an entry from one safe to
+	  another by dragging does not update the safe's changed status
+
+2006-04-06 03:14  nolan
+
+	* src/: mypasswordsafe.ui, mypasswordsafe.ui.h, pwordeditdlg.ui,
+	  pwordeditdlg.ui.h: Added three new options:	Generate and show
+	  Generate and fetch   Automatically generate new passwords These
+	  are stored in PwordEditDlg but also needed actions, setters, and
+	  storage in the config file added to MyPasswordSafe.
+
+	  Disabled menu items were also removed from MyPasswordSafe
+
+2006-03-26 19:06  nolan
+
+	* src/serializers.cpp: Had a reported bug in which only the items
+	  in a single group got saved with a PwSafe 1.0 safe. The repro
+	  steps were:	Create a safe with a few entries   Save it as a
+	  PwSafe 1.0 safe   Create a couple of folders	 Move the items
+	  into those folders   Save the safe.	 Reopen the safe  It ended
+	  up with the items from a single group instead of all the items.
+	  The cause was that I was returning from a recursive call to
+	  BlowfishLizer::saveGroup instead of only returning on an error.
+
+2006-01-23 20:57  nolan
+
+	* MyPasswordSafe.pro, MyPasswordSafe.qrc, src/aboutdlg.ui,
+	  src/main.cpp, src/manualdlg.ui, src/mypasswordsafe.ui,
+	  src/mypasswordsafe.ui.h, src/newpassphrasedlg.ui,
+	  src/passphrasedlg.ui, src/plaintextlizer.cpp,
+	  src/plaintextlizer.hpp, src/preferencesdlg.ui,
+	  src/preferencesdlg.ui.h, src/pwordeditdlg.ui, src/safe.hpp,
+	  src/safedragobject.cpp, src/safedragobject.hpp,
+	  src/safelistview.cpp, src/safelistview.hpp, src/serializers.cpp,
+	  src/startupdlgbase.ui, src/xmlserializer.cpp,
+	  src/tools/idle/idle_x11.cpp, uuid-1.0.0/Makefile,
+	  uuid-1.0.0/config.status: Converted to Qt4
+
+2005-12-17 06:47  nolan
+
+	* src/: mypasswordsafe.ui.h, pwordeditdlg.ui, pwordeditdlg.ui.h:
+	  Set the edit dialog as the active window if the user tries to
+	  edit that item a second time.  Moved the future group handling
+	  for new items into MyPasswordSafe
+
+2005-12-17 06:33  nolan
+
+	* src/: mypasswordsafe.ui, mypasswordsafe.ui.h, pwordeditdlg.ui,
+	  pwordeditdlg.ui.h, safelistview.cpp: Made the add and edit
+	  dialogs non-modal Hiding during a lock now works
+
+2005-12-17 05:03  nolan
+
+	* src/: mypasswordsafe.ui, mypasswordsafe.ui.h, pwordeditdlg.ui,
+	  pwordeditdlg.ui.h, safelistview.cpp, safelistview.hpp: Attempted
+	  to hide the edit dialog when MyPS got locked, but that caused a
+	  crash so they get closed.  Moved entry creation and updating to
+	  PwordEditDlg Moved the default user name and generation length
+	  into PwordEditDlg
+
+2005-12-17 02:42  nolan
+
+	* src/pwordeditdlg.ui.h, src/serializers.cpp, uuid-1.0.0/Makefile,
+	  uuid-1.0.0/config.status: Fixed the problem with the show
+	  password button; was checking for a normal echo mode
+
+2005-11-25 00:21  nolan
+
+	* src/: mypasswordsafe.ui, mypasswordsafe.ui.h: Lock on minimize
+	  works under WindowMaker
+
+2005-11-24 01:23  nolan
+
+	* src/mypasswordsafe.ui.h: Parented all the dialogs
+
+2005-11-23 22:15  nolan
+
+	* release/Makefile: Updated release path and upload rules
+
+2005-11-23 11:14  nolan
+
+	* src/: mypasswordsafe.ui.h, pwordeditdlg.ui, pwordeditdlg.ui.h:
+	  Had a bug in the user name and password checking in the edit
+	  dialog.  Fixed that by adding an isNew attribute.
+
+2005-11-23 08:21  nolan
+
+	* src/tools/idle/: idle.cpp, idle.h, idle.pri, idle_mac.cpp,
+	  idle_win.cpp, idle_x11.cpp, win32/Makefile, win32/idleui.cpp,
+	  win32/idleui.def, win32/idleui.dll, win32/idleui.h: Added Idle
+	  from Psi to lock MyPS
+
+2005-11-23 08:21  nolan
+
+	* src/mypasswordsafe.ui, src/mypasswordsafe.ui.h,
+	  src/preferencesdlg.ui, src/preferencesdlg.ui.h,
+	  src/pwordeditdlg.ui, src/pwordeditdlg.ui.h, src/safe.cpp,
+	  src/safe.hpp, src/safelistview.cpp, src/safelistview.hpp,
+	  src/serializers.cpp, test/safe/safe.pro, test/safe/safetest.cpp:
+	  Added Idle from Psi to lock MyPS Add Password: automatically
+	  generate a new password and display it to the user Confirm
+	  changes to user name and/or password in entries Empty fields are
+	  now saved working around a bug in Password Safe Clipboard will be
+	  cleared after a specified time Generated passwords are
+	  automatically fetched
+
+2005-11-23 08:19  nolan
+
+	* MyPasswordSafe.pro: Added Idle from Psi
+
+2005-06-15 04:10  nolan
+
+	* src/serializers.cpp:
+	  readCBC wasn't allocating enough memory for the buffer when the
+	  string's length was a multiple of 8. This was fixed by adding
+	  one.
+
+2005-06-15 03:32  nolan
+
+	* src/serializers.cpp:
+	  Fixed a memory leak in readCBC
+
+2005-02-07 18:04  nolan
+
+	* src/: aboutdlg.ui, manualdlg.ui, newpassphrasedlg.ui,
+	  passphrasedlg.ui, preferencesdlg.ui, pwordeditdlg.ui,
+	  startupdlgbase.ui: Added accelerators
+
+2004-12-09 01:51  nolan
+
+	* release/Makefile: Removed signing from all
+
+2004-12-09 01:49  nolan
+
+	* src/safelistview.cpp: Root is no longer decorated
+
+2004-12-09 01:48  nolan
+
+	* images/help.png: Copied from Psi
+
+2004-12-06 11:03  nolan
+
+	* src/: mypasswordsafe.ui, mypasswordsafe.ui.h, safe.cpp,
+	  safelistview.cpp, safelistview.hpp: Added in place group renaming
+	  Safe emits changed() now MyPasswordSafe is connected to
+	  Safe::changed() Added savingEnabled() slot to MyPasswordSafe
+
+2004-12-06 08:38  nolan
+
+	* src/: mypasswordsafe.ui, safelistview.cpp: Added icon to
+	  passwords
+
+2004-12-06 08:38  nolan
+
+	* MyPasswordSafe.pro, images/configure.png, images/editcopy.png,
+	  images/editcopy_1.png, images/fetch_user.png,
+	  images/file_locked.png, images/folder_new.png: Added and redid
+	  some images
+
+2004-12-06 08:14  nolan
+
+	* Makefile, README: Updated README Increased minor version number
+
+2004-12-06 08:07  nolan
+
+	* src/crypto/: bfproxy.cpp, bfproxy.hpp, cryptointerface.hpp: Added
+	  copyright notice
+
+2004-12-06 07:34  nolan
+
+	* src/: safeserializer.cpp, serializers.cpp, serializers.hpp: Used
+	  #ifdef instead of #if
+
+2004-12-06 07:32  nolan
+
+	* MyPasswordSafe.pro, src/encryptedstring.cpp,
+	  src/encryptedstring.hpp, src/myutil.cpp, src/myutil.hpp,
+	  src/safe.cpp, src/safe.hpp, src/safeserializer.cpp,
+	  src/serializers.cpp, src/serializers.hpp, src/xmlserializer.cpp,
+	  src/crypto/bfproxy.cpp, src/crypto/bfproxy.hpp,
+	  src/crypto/blowfish.cpp, src/crypto/blowfish.h,
+	  src/crypto/cryptointerface.hpp, src/crypto/sha1.cpp,
+	  src/crypto/sha1.h, src/pwsafe/PW_BlowFish.cpp,
+	  src/pwsafe/PW_BlowFish.h, src/pwsafe/Util.cpp,
+	  test/bfproxytest.build, test/bfproxytest.cpp: Moved the
+	  serializers off of Password Safe's blowfish and sha1 code Created
+	  a proxy class for Blowfish Created two serializers for big endian
+	  machines to open the borked safes Made EncryptedString use a
+	  single encryption object
+
+2004-12-06 01:16  nolan
+
+	* src/startupdlgbase.ui: Changed the shadow and shape of banner
+
+2004-12-06 01:14  nolan
+
+	* release/Makefile: Added about_banner swapping Renamed 'upload' to
+	  'release' All just compiles, no more uploading
+
+2004-12-06 01:01  nolan
+
+	* src/aboutdlg.ui: Added logo to license
+
+2004-12-06 01:00  nolan
+
+	* images/: about_banner.png, about_banner.src.png: Branded about
+	  logo Created an unbranded src logo
+
+2004-11-30 16:26  nolan
+
+	* images/edit_remove.png: Switched it to a minus sign again, but
+	  it's based off of the new plus sign
+
+2004-11-29 22:35  nolan
+
+	* uuid-1.0.0/: Makefile, config.status: [no log message]
+
+2004-11-29 22:35  nolan
+
+	* images/: button_ok.png, edit_add.png, edit_remove.png,
+	  fileclose.png: Copied better icons from Psi
+
+2004-11-02 17:17  nolan
+
+	* src/: mypasswordsafe.ui, mypasswordsafe.ui.h: Connected helpAbout
+
+2004-11-02 17:17  nolan
+
+	* MyPasswordSafe.pro: Removed some spaces
+
+2004-11-02 16:51  nolan
+
+	* images/: fileclose.png, lock.png: Added
+
+2004-11-02 16:51  nolan
+
+	* Makefile: Removed domainname
+
+2004-11-02 16:37  nolan
+
+	* src/safelistview.cpp: The username is copied to the clipboard on
+	  a drag
+
+2004-11-02 16:28  nolan
+
+	* Makefile: Inced version
+
+2004-11-02 16:27  nolan
+
+	* README: Added headers and -jN
+
+2004-11-02 16:25  nolan
+
+	* src/: aboutdlg.ui, aboutdlg.ui.h, main.cpp, mypasswordsafe.ui,
+	  mypasswordsafe.ui.h: The license gets displayed the first time
+	  MyPS is ran
+
+2004-11-02 15:57  nolan
+
+	* src/: main.cpp, mypasswordsafe.ui, mypasswordsafe.ui.h: Made
+	  locking hide the main window Locking no longer prompts on a
+	  change of virtual desktops
+
+2004-11-02 01:38  nolan
+
+	* src/mypasswordsafe.ui.h: [no log message]
+
+2004-11-01 18:42  nolan
+
+	* src/: mypasswordsafe.ui, mypasswordsafe.ui.h, startupdlgbase.ui,
+	  startupdlgbase.ui.h: The password widget gets focus after an
+	  action is selected Set the startup dialog's icon Changed a couple
+	  of the action items' text Default action sets the default safe
+
+2004-11-01 18:23  nolan
+
+	* MyPasswordSafe.pro, src/myendian.h, src/myutil.hpp,
+	  src/startupdlgbase.ui.h, src/crypto/blowfish.cpp,
+	  src/crypto/blowfish.h, src/crypto/sha1.cpp, src/crypto/sha1.h,
+	  src/pwsafe/PwsPlatform.h: Added new crypto
+
+2004-11-01 16:54  nolan
+
+	* MyPasswordSafe.pro, src/encryptedstring.cpp,
+	  src/encryptedstring.hpp, src/serializers.cpp,
+	  src/pwsafe/PW_BlowFish.cpp, src/pwsafe/PW_sha1.cpp,
+	  src/pwsafe/PW_sha1.h, src/pwsafe/Util.cpp, src/pwsafe/Util.h,
+	  src/pwsafe/sha1.cpp, src/pwsafe/sha1.h: Renamed sha1 Changed the
+	  #includes
+
+2004-11-01 16:50  nolan
+
+	* README: Removed Boost and added trademark and copyright info
+
+2004-11-01 16:49  nolan
+
+	* MyPasswordSafe.pro, README: [no log message]
+
+2004-11-01 16:48  nolan
+
+	* MyPasswordSafe.pro: Changed BlowFish to PW_BlowFish
+
+2004-11-01 16:48  nolan
+
+	* src/pwsafe/: BlowFish.cpp, BlowFish.h, PW_BlowFish.cpp,
+	  PW_BlowFish.h: Renamed
+
+2004-11-01 16:44  nolan
+
+	* COPYING: [no log message]
+
+2004-11-01 16:34  nolan
+
+	* src/: encryptedstring.cpp, encryptedstring.hpp, exception.hpp,
+	  main.cpp, mypasswordsafe.ui.h, myutil.cpp, myutil.hpp,
+	  newpassphrasedlg.ui.h, passphrasedlg.ui.h, plaintextlizer.cpp,
+	  plaintextlizer.hpp, preferencesdlg.ui.h, pwordeditdlg.ui.h,
+	  safe.cpp, safe.hpp, safedragobject.cpp, safedragobject.hpp,
+	  safelistview.cpp, safelistview.hpp, safeserializer.cpp,
+	  safeserializer.hpp, securedstring.cpp, securedstring.hpp,
+	  serializers.cpp, serializers.hpp, smartptr.cpp, smartptr.hpp,
+	  startupdlg.cpp, startupdlgbase.ui.h, uuid.cpp, uuid.hpp,
+	  xmlserializer.cpp, xmlserializer.hpp: Changed the header
+
+2004-11-01 16:01  nolan
+
+	* src/aboutdlg.ui: Changed license to GPL
+
+2004-11-01 16:01  nolan
+
+	* MyPasswordSafe.pro: [no log message]
+
+2004-11-01 12:53  nolan
+
+	* src/: mypasswordsafe.ui.h, passphrasedlg.ui.h,
+	  preferencesdlg.ui.h, pwordeditdlg.ui.h: Changed SGS to SG
+
+2004-11-01 12:44  nolan
+
+	* src/: encryptedstring.cpp, encryptedstring.hpp, main.cpp,
+	  plaintextlizer.cpp, safe.cpp, safe.hpp, safelistview.cpp,
+	  safeserializer.cpp, safeserializer.hpp, securedstring.cpp,
+	  securedstring.hpp, serializers.cpp, serializers.hpp,
+	  smartptr.cpp, smartptr.hpp, uuid.cpp, uuid.hpp,
+	  xmlserializer.hpp: Changed Semantic Gap Solutions to Semantic Gap
+	  (TM)
+
+2004-11-01 12:39  nolan
+
+	* src/: safe.cpp, safelistview.cpp, smartptr.cpp, smartptr.hpp:
+	  Replaced assert w/ Q_ASSERT Added headers to smartptr.?pp
+
+2004-11-01 12:35  nolan
+
+	* src/main.cpp: ifdefed out a print statement
+
+2004-11-01 12:34  nolan
+
+	* src/mypasswordsafe.ui.h: browseForSafe uses QFileDialog's static
+	  methods
+
+2004-11-01 12:10  nolan
+
+	* src/: aboutdlg.ui, manualdlg.ui, mypasswordsafe.ui,
+	  mypasswordsafe.ui.h, newpassphrasedlg.ui: Changed icons New safes
+	  won't ask to be saved when they're closed Changed MyPS's icon
+
+2004-11-01 12:10  nolan
+
+	* images/: button_cancel.png, button_ok.png, configure.png,
+	  contexthelp.png, edit.png, editcut.png, exit.png, fileopen.png,
+	  filesave.png, filesaveas.png, folder_new.png, help.png, redo.png,
+	  undo.png: Switched to 16x16 images
+
+2004-11-01 12:09  nolan
+
+	* MyPasswordSafe.pro: [no log message]
+
+2004-10-31 07:32  nolan
+
+	* src/pwsafe/: PwsPlatform.h, Util.h: Refactored the endian.h
+	  inclusion
+
+2004-10-31 07:32  nolan
+
+	* src/: mypasswordsafe.ui.h, safelistview.cpp: Changed the default
+	  column sizes
+
+2004-10-31 01:38  nolan
+
+	* src/: aboutdlg.ui, manualdlg.ui: Added a two contributors to
+	  credits Changed Semantic Gap (TM) Solutions to Semantic Gap (TM)
+
+2004-10-31 01:22  nolan
+
+	* release/Makefile: Added upload
+
+2004-10-31 01:07  nolan
+
+	* src/pwsafe/Util.h: Added endian.h for __APPLE__
+
+2004-10-30 09:41  nolan
+
+	* MyPasswordSafe.pro, src/newpassphrasedlg.ui,
+	  src/passphrasedlg.ui, src/preferencesdlg.ui, src/pwordeditdlg.ui,
+	  src/startupdlgbase.ui: Added icons to buttons
+
+2004-10-30 09:15  nolan
+
+	* src/: passphrasedlg.ui, startupdlgbase.ui: Changed the dialog
+	  sizes
+
+2004-10-30 08:58  nolan
+
+	* images/keys.png: Readded
+
+2004-10-30 08:58  nolan
+
+	* MyPasswordSafe.pro, images/keys.png, src/passphrasedlg.ui,
+	  src/startupdlgbase.ui: Added keys Changed source files to use
+	  keys.png
+
+2004-10-30 08:44  nolan
+
+	* images/keys.png: new icon
+
+2004-10-22 19:14  nolan
+
+	* doc/sshots/mainwindow.jpg, src/serializers.cpp: Groupnames are
+	  converted from UTF8
+
+2004-10-11 05:27  nolan
+
+	* Makefile, src/pwsafe/PwsPlatform.h, src/pwsafe/Util.h: Applied
+	  contributed patches
+
+2004-10-03 22:04  nolan
+
+	* src/: mypasswordsafe.ui.h, safedragobject.cpp,
+	  safedragobject.hpp, safelistview.cpp, safelistview.hpp: Did some
+	  work so MyPS wouldn't segfault when dragging onto another app
+
+2004-10-03 22:03  nolan
+
+	* MyPasswordSafe.pro: Removed spaces added by Designer
+
+2004-10-01 22:40  nolan
+
+	* Makefile: Increased version number Added check for HOST
+
+2004-10-01 22:26  nolan
+
+	* src/: aboutdlg.ui, mypasswordsafe.ui, mypasswordsafe.ui.h,
+	  newpassphrasedlg.ui, passphrasedlg.ui, plaintextlizer.cpp,
+	  preferencesdlg.ui, pwordeditdlg.ui, safedragobject.cpp,
+	  safelistview.cpp, safelistview.hpp, safeserializer.cpp,
+	  xmlserializer.cpp, xmlserializer.hpp: Added some file headers
+	  Changed the button order on some dialogs Added drag and drop
+	  Finished XmlSerializer
+
+2004-10-01 22:26  nolan
+
+	* MyPasswordSafe.pro: Added some file headers Changed the button
+	  order on some dialogs Added drag and drop
+
+2004-10-01 19:19  nolan
+
+	* src/: mypasswordsafe.ui.h, uuid.cpp, uuid.hpp, xmlserializer.cpp:
+	  Fixed a compiliation problem w/ UUID not using QString
+
+2004-10-01 05:38  nolan
+
+	* src/serializers.cpp: Fixed compilation problem
+
+2004-09-27 15:44  nolan
+
+	* Makefile: Tweaked the Makefile
+
+2004-09-21 06:19  nolan
+
+	* README, src/aboutdlg.ui: Added TM
+
+2004-09-20 23:43  nolan
+
+	* Makefile, src/safe.cpp, src/serializers.cpp,
+	  src/xmlserializer.cpp, test/uuid/test.cpp, test/uuid/uuid.pro:
+	  Fixed a bug where a new file would cause Safe::save to return
+	  BadFile
+
+2004-08-20 00:03  nolan
+
+	* src/: uuid.cpp, uuid.hpp: [no log message]
+
+2004-08-12 22:56  nolan
+
+	* MyPasswordSafe.ebuild: A working ebuild for Gentoo
+
+2004-08-12 16:13  nolan
+
+	* Makefile: Added a test to see if PREFIX is defined
+
+2004-08-01 23:04  nolan
+
+	* src/: safedragobject.cpp, safedragobject.hpp: Initial version of
+	  the drag object; currently incomplete
+
+2004-08-01 23:03  nolan
+
+	* src/: mypasswordsafe.ui, mypasswordsafe.ui.h, plaintextlizer.cpp,
+	  safelistview.cpp, safelistview.hpp, serializers.cpp: Did the
+	  first half of drag and drop support PlainTextLizer now stores
+	  everything in utf8, even the password Hopefully I fixed some bugs
+	  in serializers.cpp
+	  ----------------------------------------------------------------------
+
+2004-08-01 23:02  nolan
+
+	* MyPasswordSafe.pro: Added safedragobject.?pp
+
+2004-08-01 04:11  nolan
+
+	* src/pwsafe/: BlowFish.cpp, BlowFish.h, sha1.cpp, sha1.h:
+	  Incorporated Peter Palfrader's patch for 64 bit cleanliness
+
+2004-08-01 04:11  nolan
+
+	* src/: mypasswordsafe.ui.h, safe.cpp, safelistview.cpp,
+	  safeserializer.cpp, securedstring.cpp, serializers.cpp:
+	  Incorporated Peter Palfrader's patch for 64 bit cleanliness
+	  BlowfishLizer only does ascii Fixed some bugs with BlowfishLizer
+	  When browsing for a safe to save, the user is prompted if the
+	  file exists
+
+2004-08-01 04:10  nolan
+
+	* doc/manual.html: Added Peter Palfrader to the credits
+
+2004-07-30 19:03  nolan
+
+	* src/: mypasswordsafe.ui.h, safelistview.cpp, safelistview.hpp:
+	  Made SafeListView::getSelectedItem returns SafeItem Updated
+	  mypasswordsafe.ui.h to reflect the change
+
+2004-07-30 05:24  nolan
+
+	* src/: aboutdlg.ui, manualdlg.ui, mypasswordsafe.ui,
+	  newpassphrasedlg.ui, passphrasedlg.ui, preferencesdlg.ui,
+	  pwordeditdlg.ui, startupdlgbase.ui: Removed the version attribute
+
+2004-07-30 05:22  nolan
+
+	* src/mypasswordsafe.ui.h: Fixed all the problems with locking
+
+2004-07-30 05:22  nolan
+
+	* release/Makefile: clean now works
+
+2004-07-30 04:53  nolan
+
+	* test/xmlserializer/: xmlserializertest.cpp,
+	  xmlserializertest.hpp, xmlserializertest.pro: Tested the fromXml
+	  methods
+
+2004-07-30 04:53  nolan
+
+	* src/: startupdlgbase.ui.h, xmlserializer.cpp, xmlserializer.hpp:
+	  Implemented XmlSerializer::safeGroupFromXml Indented
+	  startupdlgbase.ui.h
+
+2004-07-30 04:09  nolan
+
+	* release/Makefile: Removes tarballs and signatures
+
+2004-07-29 22:59  nolan
+
+	* release/Makefile: Added GPG signing
+
+2004-07-29 19:42  nolan
+
+	* MyPasswordSafe.pro: Checks if DEBUG is set in the environment
+
+2004-07-29 19:11  nolan
+
+	* release/Makefile: Modified so that it uses MyPasswordSafe-$(DATE)
+	  as the dir
+
+2004-07-29 19:04  nolan
+
+	* src/: attic.cpp, myutil.cpp, myutil.hpp, safe.cpp, safe.hpp:
+	  Moved some functions that aren't used from myutil.cpp to
+	  attic.cpp Using QFileInfo to get the files extension in safe.cpp
+
+2004-07-29 03:01  nolan
+
+	* test/safe/: safe.pro, safetest.cpp: Moved into oldtests
+
+2004-07-29 03:01  nolan
+
+	* test/myutil/: myutil.pro, myutiltest.cpp, myutiltest.hpp: Unit
+	  test for myutil.cpp
+
+2004-07-29 03:01  nolan
+
+	* test/main.cpp: main() for the unit tests
+
+2004-07-29 03:01  nolan
+
+	* src/: myutil.cpp, myutil.hpp, safe.cpp: Fixed some bugs uncovered
+	  in unit testing
+
+2004-07-28 21:32  nolan
+
+	* test/oldtests/: bigsafemaker.cpp, blowfish.cpp, build.txt,
+	  cbc.cpp, groups.cpp, securedstring.cpp, smartptr.cpp: Oldtests
+
+2004-07-28 21:32  nolan
+
+	* test/: bigsafemaker.cpp, build.txt, cbc.cpp, groups.cpp,
+	  smartptr.cpp: Moved them to oldtests
+
+2004-07-28 19:00  nolan
+
+	* src/: mypasswordsafe.ui.h, newpassphrasedlg.ui,
+	  newpassphrasedlg.ui.h, safe.cpp, safe.hpp, serializers.cpp: Fixed
+	  a bug in BlowfishLizer Removed the pass-phrase dialog from saveAs
+	  Changed how the ok button gets disabled in NewPassPhraseDlg
+	  Safe::save no longer takes a passphrase to save
+
+2004-07-28 18:59  nolan
+
+	* MyPasswordSafe.pro: [no log message]
+
+2004-07-28 18:17  nolan
+
+	* src/: mypasswordsafe.ui.h, myutil.cpp, myutil.hpp,
+	  plaintextlizer.cpp, plaintextlizer.hpp, pwordeditdlg.ui,
+	  pwordeditdlg.ui.h, safe.cpp, safe.hpp, safelistview.cpp,
+	  safelistview.hpp, safeserializer.cpp, serializers.cpp,
+	  serializers.hpp, xmlable.hpp, xmlserializer.cpp,
+	  xmlserializer.hpp: Safe is now a tree and has a new interface
+	  Serializers updated to use the new interface MyPasswordSafe
+	  updated SafeListView updated MVC communication paths changed a
+	  bit Beginnings of XMLSerializer trimLeft/Right moved into
+	  myutil.cpp Group path handling functions added to myutil.cpp
+
+2004-07-28 18:15  nolan
+
+	* MyPasswordSafe.pro, test/safe/safe.pro, test/safe/safetest.cpp:
+	  [no log message]
+
+2004-07-28 11:56  nolan
+
+	* test/dndproto/: dndproto.cpp, dndproto.hpp: Commented and cleaned
+	  up the code a little
+
+2004-07-26 02:11  nolan
+
+	* src/pwsafe/: BlowFish.cpp, Util.cpp: Thought EncryptedString had
+	  a bug
+
+2004-07-26 02:11  nolan
+
+	* src/: attic.cpp, encryptedstring.cpp, mypasswordsafe.ui.h,
+	  safe.cpp, safe.hpp, safelistview.cpp, safelistview.hpp,
+	  safeserializer.cpp, serializers.cpp, serializers.hpp: Working on
+	  the new Safe architecture Thought EncryptedString had a bug Made
+	  the serializers more orthogonal
+
+2004-07-26 02:10  nolan
+
+	* MyPasswordSafe.pro: [no log message]
+
+2004-07-26 02:05  nolan
+
+	* src/xmlable.hpp: ABC for fromXml and toXml
+
+2004-07-25 13:29  nolan
+
+	* test/dndproto/: dndproto.cpp, dndproto.hpp: Tried multi selection
+
+2004-07-25 13:29  nolan
+
+	* src/: safe.cpp, safe.hpp: Moved comments into safe.cpp so the
+	  header would be easier to edit
+
+2004-07-24 15:49  nolan
+
+	* src/: mypasswordsafe.ui.h, safe.cpp: Fixed a bug w/ Change
+	  pass-phrase
+
+2004-07-24 08:43  nolan
+
+	* test/dndproto/: dndproto.cpp, dndproto.hpp: text/plain supported
+	  for dragged items items and groups are dragged w/ different
+	  classes
+
+2004-07-23 22:30  nolan
+
+	* test/dndproto/: dndproto.cpp, dndproto.hpp, dndtest.pro: Drag and
+	  drop prototype
+
+2004-07-23 22:30  nolan
+
+	* src/: safe.cpp, safe.hpp, safelistview.cpp: [no log message]
+
+2004-06-27 23:58  nolan
+
+	* src/: serializers.cpp, serializers.hpp: Refactored
+	  BlowfishLizer2::writeEntry
+
+2004-06-27 18:03  nolan
+
+	* src/preferencesdlg.ui.h: Had a c_str() on a what is now a QString
+
+2004-06-27 05:10  nolan
+
+	* uuid-1.0.0/libtool: Wasn't needed in cvs
+
+2004-06-27 05:09  nolan
+
+	* src/: safelistview.cpp, serializers.cpp: Possibly fixed a bug w/
+	  BlowfishLizer2
+
+2004-06-24 02:46  nolan
+
+	* src/: safe.cpp, serializers.cpp: Using QStringList::split instead
+	  of my own
+
+2004-06-24 01:08  nolan
+
+	* test/: build.txt, groups.cpp: Had to test
+	  BlowfishLizer::readyGroup and parseGroup
+
+2004-06-24 01:08  nolan
+
+	* src/: mypasswordsafe.ui.h, pwordeditdlg.ui, safe.cpp, safe.hpp,
+	  safeserializer.cpp, safeserializer.hpp, serializers.cpp,
+	  serializers.hpp: Moved Safe and the serializers off of
+	  std::string and onto QString
+
+2004-06-23 23:16  nolan
+
+	* src/: mypasswordsafe.ui, mypasswordsafe.ui.h, safe.cpp,
+	  safelistview.cpp: Refactored config file reading/writing into
+	  their own methods Removed some commented out lines
+
+2004-06-23 23:15  nolan
+
+	* locale/mypasswordsafe_fr.ts: [no log message]
+
+2004-06-23 23:15  nolan
+
+	* Makefile, MyPasswordSafe.pro: Increased the version
+
+2004-06-22 21:24  nolan
+
+	* src/: mypasswordsafe.ui.h, safe.cpp, safe.hpp: Added
+	  Safe::errorToString
+
+2004-06-22 21:24  nolan
+
+	* locale/mypasswordsafe_c.ts, locale/mypasswordsafe_en.ts,
+	  uuid-1.0.0/config.log: [no log message]
+
+2004-06-22 21:24  nolan
+
+	* MyPasswordSafe.pro: It got munged somehow, so I fixed it
+
+2004-06-21 19:06  nolan
+
+	* Makefile: ChangeLog is no longer in all
+
+2004-06-21 19:05  nolan
+
+	* release/Makefile: ChangeLog is generated, not copied
+
+2004-06-21 19:05  nolan
+
+	* Makefile: Added ChangeLog creation
+
+2004-06-21 19:03  nolan
+
+	* tools/cvs2cl.pl: CVS ChangeLog generator
+
+2004-06-21 19:03  nolan
+
+	* release/Makefile: Copies ChangeLog
+
+2004-06-21 19:00  nolan
+
+	* src/: mypasswordsafe.ui, mypasswordsafe.ui.h, pwordeditdlg.ui,
+	  pwordeditdlg.ui.h, safelistview.hpp: Made PwordEditDlg tabbed and
+	  rearranged it; removed the group line from it Added "Install
+	  Clear timer?" and "Details" to MyPasswordSafe's menu for future
+	  use Added SafeListViewItem::getUUID()
+
+2004-06-21 18:57  nolan
+
+	* MyPasswordSafe.pro: [no log message]
+
+2004-06-20 22:02  nolan
+
+	* test/build.txt: Added a short test to safe.cpp to see how
+	  SafeItem constructed the UUID and how clear() worked
+
+2004-06-20 22:02  nolan
+
+	* src/: safe.cpp, serializers.cpp: Added a short test to safe.cpp
+	  to see how SafeItem constructed the UUID and how clear() worked
+	  Removed some unneeded lines in serializers.cpp
+
+2004-06-20 16:25  nolan
+
+	* src/: safe.cpp, safe.hpp, serializers.cpp, serializers.hpp,
+	  uuid.cpp, uuid.hpp: Integrated UUID into SafeItem and
+	  BlowfishLizer2
+
+2004-06-19 16:48  nolan
+
+	* src/: mypasswordsafe.ui.h, safelistview.cpp, serializers.cpp,
+	  serializers.hpp: BlowfishLizer2 saves and loads the times
+	  SafeListView displays times Access time is updated even if the
+	  item isn't editted
+
+2004-06-15 00:30  nolan
+
+	* CHANGES: updated
+
+2004-06-15 00:18  nolan
+
+	* src/: mypasswordsafe.ui, mypasswordsafe.ui.h,
+	  preferencesdlg.ui.h, pwordeditdlg.ui, safe.hpp, safelistview.cpp,
+	  smartptr.cpp, startupdlgbase.ui.h: Fixed some compilation
+	  problems that occured on Pat's machine
+
+2004-06-12 05:55  nolan
+
+	* release/Makefile: Added "bin" and "src" directives
+
+2004-06-12 05:54  nolan
+
+	* src/serializers.cpp: Fixed compiler warnings
+
+2004-06-12 02:30  nolan
+
+	* src/: mypasswordsafe.ui, safe.cpp, safe.hpp, safeserializer.cpp,
+	  safeserializer.hpp: Documented safeserializer.hpp Updated the
+	  keyboard shortcuts for the main window Renamed
+	  SafeSerializer::description to name
+
+2004-06-12 02:30  nolan
+
+	* MyPasswordSafe.pro: [no log message]
+
+2004-06-12 01:42  nolan
+
+	* src/: mypasswordsafe.ui.h, safe.cpp, safe.hpp,
+	  safeserializer.cpp, safeserializer.hpp, serializers.hpp: Moved
+	  SafeSerializer into its own file Added Safe::getTypes and
+	  Safe::getExtensions so MyPasswordSafe doesn't 	have to
+	  know about SafeSerializer
+
+2004-06-12 01:41  nolan
+
+	* MyPasswordSafe.pro: Added safeserializer.?pp
+
+2004-06-12 01:23  nolan
+
+	* src/safe.cpp: Removed an if statement that became reduntant w/
+	  the previous fix
+
+2004-06-12 01:14  nolan
+
+	* src/safe.cpp: Fixed a bug w/ Safe::save not setting the safe's
+	  type when one wasn't specified
+
+2004-06-12 01:13  nolan
+
+	* CHANGES: [no log message]
+
+2004-06-10 10:29  nolan
+
+	* src/: aboutdlg.ui, newpassphrasedlg.ui, passphrasedlg.ui,
+	  preferencesdlg.ui: Fixed any buttons that responded to pressed()
+	  instead of clicked()
+
+2004-06-10 10:28  nolan
+
+	* Makefile, MyPasswordSafe.pro: Removed endian from make config
+	  Added uuid to clean
+
+2004-06-10 07:00  nolan
+
+	* CHANGES: Updated
+
+2004-06-10 06:46  nolan
+
+	* Makefile: Changed version number
+
+2004-06-10 06:45  nolan
+
+	* uuid-1.0.0/: AUTHORS, ChangeLog, HISTORY, INSTALL, Makefile,
+	  Makefile.in, NEWS, PORTING, README, THANKS, TODO, aclocal.m4,
+	  config.guess, config.h, config.h.in, config.log, config.status,
+	  config.sub, configure, configure.ac, libtool, libtool.m4,
+	  ltmain.sh, shtool, uuid-config, uuid-config.1, uuid-config.in,
+	  uuid-config.pod, uuid.1, uuid.3, uuid.ac, uuid.c, uuid.h,
+	  uuid.h.in, uuid.pod, uuid_ac.h, uuid_bm.h, uuid_cli.c,
+	  uuid_cli.pod, uuid_dce.c, uuid_dce.h, uuid_mac.c, uuid_mac.h,
+	  uuid_md5.c, uuid_md5.h, uuid_prng.c, uuid_prng.h, uuid_str.c,
+	  uuid_str.h, uuid_ui64.c, uuid_ui64.h, uuid_vers.h: OSSP uuid
+
+2004-06-10 06:45  nolan
+
+	* Makefile, MyPasswordSafe.pro: Added lines for uuid-1.0.0
+
+2004-06-10 06:35  nolan
+
+	* Makefile, release/Makefile: [no log message]
+
+2004-06-03 03:32  nolan
+
+	* src/: uuid.cpp, uuid.hpp: Added exceptions
+
+2004-06-03 03:32  nolan
+
+	* doc/design/new_features.txt: Reordered
+
+2004-06-03 03:31  nolan
+
+	* MyPasswordSafe.pro, doxygen.conf: Turned off doxygen briefs
+
+2004-05-18 17:16  nolan
+
+	* test/build.txt: Added UUID class test build command
+
+2004-05-18 17:16  nolan
+
+	* MyPasswordSafe.pro, src/uuid.cpp, src/uuid.hpp: Added UUID class
+	  files
+
+2004-05-13 18:20  nolan
+
+	* src/: mypasswordsafe.ui, mypasswordsafe.ui.h, myutil.cpp,
+	  myutil.hpp, pwordeditdlg.ui.h, safe.cpp, safelistview.hpp,
+	  serializers.cpp: Moved copyToClipboard to myutil.cpp
+	  BlowfishLizer2 writes UUIDs Modification and access times get
+	  updated
+
+2004-05-05 17:53  nolan
+
+	* CHANGES: Updated
+
+2004-05-05 17:29  nolan
+
+	* src/: mypasswordsafe.ui.h, pwordeditdlg.ui, pwordeditdlg.ui.h,
+	  safelistview.cpp, safelistview.hpp: Added times and group to edit
+	  dialog
+
+2004-05-04 17:50  nolan
+
+	* examples/: attr, attr.cpp, safe, safe.cpp: [no log message]
+
+2004-05-04 17:48  nolan
+
+	* Makefile, doc/design/spec.abw, src/encryptedstring.cpp,
+	  src/encryptedstring.hpp, src/exception.hpp, src/main.cpp,
+	  src/mypasswordsafe.ui.h, src/passphrasedlg.ui.h,
+	  src/preferencesdlg.ui.h, src/pwordeditdlg.ui.h, src/safe.cpp,
+	  src/safe.hpp, src/safelistview.cpp, src/safelistview.hpp,
+	  src/securedstring.cpp, src/securedstring.hpp,
+	  src/serializers.cpp, src/serializers.hpp, src/smartptr.hpp,
+	  src/pwsafe/PwsPlatform.h: The newest version
+
+2004-05-04 17:47  nolan
+
+	* CHANGES, Makefile, MyPasswordSafe.pro, README, doxygen.conf,
+	  doc/endian.txt, doc/manual.fr.html, doc/manual.html,
+	  doc/design/Schedule.ksp, doc/design/inputs.txt,
+	  doc/design/new_features.txt, doc/design/refactoring_plan.txt,
+	  doc/design/spec.abw, doc/design/timing.txt,
+	  doc/sshots/editdialog.fr.jpg, doc/sshots/editdialog.jpg,
+	  doc/sshots/mainwindow.fr.jpg, doc/sshots/mainwindow.jpg,
+	  doc/sshots/prefsdialog.fr.jpg, doc/sshots/prefsdialog.jpg,
+	  images/Padlock.xpm, images/about_banner.png, images/back.png,
+	  images/button_cancel.png, images/button_ok.png,
+	  images/configure.png, images/contexthelp.png, images/edit.png,
+	  images/edit_add.png, images/edit_remove.png,
+	  images/editcopy_1.png, images/editcut.png, images/encrypted.png,
+	  images/exit.png, images/fetch_user.png, images/filenew.png,
+	  images/filenew2.png, images/fileopen.png, images/filesave.png,
+	  images/filesaveas.png, images/folder_blue.png,
+	  images/folder_blue_open.png, images/folder_new.png,
+	  images/forward.png, images/help.png, images/info.png,
+	  images/password.png, images/redo.png, images/searchfind,
+	  images/undo.png, locale/mypasswordsafe_c.ts,
+	  locale/mypasswordsafe_en.ts, locale/mypasswordsafe_fr.ts,
+	  release/Makefile, src/aboutdlg.ui, src/aboutdlg.ui.h,
+	  src/attic.cpp, src/encryptedstring.cpp, src/encryptedstring.hpp,
+	  src/exception.hpp, src/main.cpp, src/manualdlg.ui,
+	  src/manualdlg.ui.h, src/mypasswordsafe.ui,
+	  src/mypasswordsafe.ui.h, src/myutil.cpp, src/myutil.hpp,
+	  src/newpassphrasedlg.ui, src/newpassphrasedlg.ui.h,
+	  src/passphrasedlg.ui, src/passphrasedlg.ui.h,
+	  src/preferencesdlg.ui, src/preferencesdlg.ui.h,
+	  src/pwordeditdlg.ui, src/pwordeditdlg.ui.h, src/safe.cpp,
+	  src/safe.hpp, src/safelistview.cpp, src/safelistview.hpp,
+	  src/securedstring.cpp, src/securedstring.hpp,
+	  src/serializers.cpp, src/serializers.hpp, src/smartptr.cpp,
+	  src/smartptr.hpp, src/startupdlg.cpp, src/startupdlg.hpp,
+	  src/startupdlgbase.ui, src/startupdlgbase.ui.h,
+	  src/pwsafe/BlowFish.cpp, src/pwsafe/BlowFish.h,
+	  src/pwsafe/LICENSE, src/pwsafe/PwsPlatform.h,
+	  src/pwsafe/Util.cpp, src/pwsafe/Util.h, src/pwsafe/sha1.cpp,
+	  src/pwsafe/sha1.h, test/bigsafemaker.cpp, test/build.txt,
+	  test/cbc.cpp, test/smartptr.cpp: Initial revision
+
+2004-05-04 17:47  nolan
+
+	* CHANGES, Makefile, MyPasswordSafe.pro, README, doxygen.conf,
+	  doc/endian.txt, doc/manual.fr.html, doc/manual.html,
+	  doc/design/Schedule.ksp, doc/design/inputs.txt,
+	  doc/design/new_features.txt, doc/design/refactoring_plan.txt,
+	  doc/design/spec.abw, doc/design/timing.txt,
+	  doc/sshots/editdialog.fr.jpg, doc/sshots/editdialog.jpg,
+	  doc/sshots/mainwindow.fr.jpg, doc/sshots/mainwindow.jpg,
+	  doc/sshots/prefsdialog.fr.jpg, doc/sshots/prefsdialog.jpg,
+	  images/Padlock.xpm, images/about_banner.png, images/back.png,
+	  images/button_cancel.png, images/button_ok.png,
+	  images/configure.png, images/contexthelp.png, images/edit.png,
+	  images/edit_add.png, images/edit_remove.png,
+	  images/editcopy_1.png, images/editcut.png, images/encrypted.png,
+	  images/exit.png, images/fetch_user.png, images/filenew.png,
+	  images/filenew2.png, images/fileopen.png, images/filesave.png,
+	  images/filesaveas.png, images/folder_blue.png,
+	  images/folder_blue_open.png, images/folder_new.png,
+	  images/forward.png, images/help.png, images/info.png,
+	  images/password.png, images/redo.png, images/searchfind,
+	  images/undo.png, locale/mypasswordsafe_c.ts,
+	  locale/mypasswordsafe_en.ts, locale/mypasswordsafe_fr.ts,
+	  release/Makefile, src/aboutdlg.ui, src/aboutdlg.ui.h,
+	  src/attic.cpp, src/encryptedstring.cpp, src/encryptedstring.hpp,
+	  src/exception.hpp, src/main.cpp, src/manualdlg.ui,
+	  src/manualdlg.ui.h, src/mypasswordsafe.ui,
+	  src/mypasswordsafe.ui.h, src/myutil.cpp, src/myutil.hpp,
+	  src/newpassphrasedlg.ui, src/newpassphrasedlg.ui.h,
+	  src/passphrasedlg.ui, src/passphrasedlg.ui.h,
+	  src/preferencesdlg.ui, src/preferencesdlg.ui.h,
+	  src/pwordeditdlg.ui, src/pwordeditdlg.ui.h, src/safe.cpp,
+	  src/safe.hpp, src/safelistview.cpp, src/safelistview.hpp,
+	  src/securedstring.cpp, src/securedstring.hpp,
+	  src/serializers.cpp, src/serializers.hpp, src/smartptr.cpp,
+	  src/smartptr.hpp, src/startupdlg.cpp, src/startupdlg.hpp,
+	  src/startupdlgbase.ui, src/startupdlgbase.ui.h,
+	  src/pwsafe/BlowFish.cpp, src/pwsafe/BlowFish.h,
+	  src/pwsafe/LICENSE, src/pwsafe/PwsPlatform.h,
+	  src/pwsafe/Util.cpp, src/pwsafe/Util.h, src/pwsafe/sha1.cpp,
+	  src/pwsafe/sha1.h, test/bigsafemaker.cpp, test/build.txt,
+	  test/cbc.cpp, test/smartptr.cpp: Recreating tree
+

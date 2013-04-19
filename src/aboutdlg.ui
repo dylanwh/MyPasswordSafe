@@ -1,0 +1,257 @@
+<!DOCTYPE UI><UI version="3.3" stdsetdef="1">
+<class>AboutDlg</class>
+<widget class="QDialog">
+    <property name="name">
+        <cstring>AboutDlg</cstring>
+    </property>
+    <property name="geometry">
+        <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>365</width>
+            <height>465</height>
+        </rect>
+    </property>
+    <property name="minimumSize">
+        <size>
+            <width>365</width>
+            <height>465</height>
+        </size>
+    </property>
+    <property name="maximumSize">
+        <size>
+            <width>365</width>
+            <height>465</height>
+        </size>
+    </property>
+    <property name="caption">
+        <string>About MyPasswordSafe</string>
+    </property>
+    <vbox>
+        <property name="name">
+            <cstring>unnamed</cstring>
+        </property>
+        <widget class="QLabel">
+            <property name="name">
+                <cstring>pixmapLabel1</cstring>
+            </property>
+            <property name="frameShape">
+                <enum>Panel</enum>
+            </property>
+            <property name="frameShadow">
+                <enum>Sunken</enum>
+            </property>
+            <property name="pixmap">
+                <pixmap>about_banner.png</pixmap>
+            </property>
+            <property name="scaledContents">
+                <bool>true</bool>
+            </property>
+            <property name="toolTip" stdset="0">
+                <string>MyPasswordSafe</string>
+            </property>
+        </widget>
+        <widget class="QTabWidget">
+            <property name="name">
+                <cstring>tabWidget2</cstring>
+            </property>
+            <widget class="QWidget">
+                <property name="name">
+                    <cstring>tab</cstring>
+                </property>
+                <attribute name="title">
+                    <string>&amp;Info</string>
+                </attribute>
+                <hbox>
+                    <property name="name">
+                        <cstring>unnamed</cstring>
+                    </property>
+                    <property name="margin">
+                        <number>0</number>
+                    </property>
+                    <widget class="QTextBrowser">
+                        <property name="name">
+                            <cstring>infoText</cstring>
+                        </property>
+                        <property name="text">
+                            <string>&lt;center&gt;
+&lt;h1&gt;MyPasswordSafe&lt;/h1&gt;
+Version: {VERSION}&lt;br/&gt;
+&lt;br/&gt;
+Copyright &amp;copy; 2004 &lt;b&gt;Semantic Gap&lt;/b&gt;&amp;trade;&lt;br/&gt;
+&lt;br/&gt;
+&lt;u&gt;&lt;font color="#0000ff"&gt;http://www.semanticgap.com/&lt;/font&gt;&lt;/u&gt;&lt;br/&gt;
+&lt;br/&gt;
+Compiled by&lt;br/&gt;
+{USER}@{HOST} on {DATE}&lt;br/&gt;
+&lt;br/&gt;
+MyPasswordSafe comes with ABSOLUTELY NO WARRANTY.&lt;br/&gt;
+&lt;br/&gt;
+This is free software, and you are welcome to redistribute it
+under certain conditions. Click the License tab for more information.&lt;br/&gt;
+&lt;br/&gt;
+&lt;/center&gt;</string>
+                        </property>
+                    </widget>
+                </hbox>
+            </widget>
+            <widget class="QWidget">
+                <property name="name">
+                    <cstring>tab</cstring>
+                </property>
+                <attribute name="title">
+                    <string>&amp;License</string>
+                </attribute>
+                <widget class="QTextBrowser">
+                    <property name="name">
+                        <cstring>licenseText</cstring>
+                    </property>
+                    <property name="geometry">
+                        <rect>
+                            <x>0</x>
+                            <y>0</y>
+                            <width>360</width>
+                            <height>270</height>
+                        </rect>
+                    </property>
+                    <property name="text">
+                        <string>&lt;p&gt;Copyright &amp;copy; 2004, &lt;b&gt;Semantic Gap&lt;/b&gt;&amp;trade;&lt;/p&gt;
+
+&lt;p&gt;&lt;b&gt;Semantic Gap&lt;/b&gt; and the double spiral logo are trademarks of Semantic Gap.&lt;/p&gt;
+
+&lt;p&gt;This program is free software; you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation; either version 2 of the License, or
+(at your option) any later version.&lt;/p&gt;
+
+&lt;p&gt;This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.&lt;/p&gt;
+
+&lt;p&gt;You should have received a copy of the GNU General Public License
+along with this program; if not, write to the Free Software
+Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA&lt;/p&gt;
+
+&lt;p&gt;&lt;b&gt;Semantic Gap&lt;/b&gt;&amp;trade; can be contacted by:
+&lt;ul&gt;
+&lt;li&gt;Email: support@semanticgap.com&lt;/li&gt;
+&lt;li&gt;Mail:&lt;br/&gt;
+&lt;b&gt;Semantic Gap&lt;/b&gt;&amp;trade;&lt;br/&gt;
+527 Park Dr.&lt;br/&gt;
+Greenwood, IN 46143&lt;/li&gt;
+&lt;/ul&gt;
+
+
+---</string>
+                    </property>
+                </widget>
+            </widget>
+            <widget class="QWidget">
+                <property name="name">
+                    <cstring>tab</cstring>
+                </property>
+                <attribute name="title">
+                    <string>&amp;Credits</string>
+                </attribute>
+                <widget class="QTextBrowser">
+                    <property name="name">
+                        <cstring>creditText</cstring>
+                    </property>
+                    <property name="geometry">
+                        <rect>
+                            <x>0</x>
+                            <y>0</y>
+                            <width>360</width>
+                            <height>270</height>
+                        </rect>
+                    </property>
+                    <property name="text">
+                        <string>&lt;html&gt;
+&lt;body&gt;
+&lt;p&gt;Programming and design by Nolan Eakins &amp;lt;&lt;font color="#0000ff"&gt;sneakin@semanticgap.com&lt;/font&gt;&amp;gt;&lt;/p&gt;
+
+Thanks go out to:
+&lt;ul&gt;
+&lt;li&gt;Emmanuel Adeline &amp;lt;&lt;font color="#0000ff"&gt;ead+myps@free.fr&lt;/font&gt;&amp;gt; for translating the manual and UI into French.&lt;/li&gt;
+&lt;li&gt;The Password Safe &amp;lt;&lt;font color="#0000ff"&gt;http://passwordsafe.sourceforge.net/&lt;/font&gt;&amp;gt; team for providing a program that I needed to port to Linux, and the loading and saving code that this program uses.&lt;/li&gt;
+&lt;li&gt;The KDE project &amp;lt;&lt;font color="#0000ff"&gt;http://www.kde.org/&lt;/font&gt;&amp;gt; for producing some high-quality ikons that MyPasswordSafe uses.&lt;/li&gt;
+&lt;li&gt;Thomas Klausner &amp;lt;&lt;font color="#0000ff"&gt;tk@giga.or.at&lt;/font&gt;&amp;gt; for sending patches to fix endian issues on NetBSD, and some Makefile suggestions.&lt;/li&gt;
+&lt;li&gt;Shawn Holwegner &amp;lt;&lt;font color="#0000ff"&gt;shawn@holwegner.com&lt;/font&gt;&amp;gt; for sending a patch to fix endian issues and releasing MyPasswordSafe on MacOS X.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br/&gt;
+&lt;br/&gt;
+&lt;hr/&gt;
+&lt;/body&gt;
+&lt;/html&gt;</string>
+                    </property>
+                </widget>
+            </widget>
+        </widget>
+        <widget class="QLayoutWidget">
+            <property name="name">
+                <cstring>layout24</cstring>
+            </property>
+            <hbox>
+                <property name="name">
+                    <cstring>unnamed</cstring>
+                </property>
+                <spacer>
+                    <property name="name">
+                        <cstring>spacer10</cstring>
+                    </property>
+                    <property name="orientation">
+                        <enum>Horizontal</enum>
+                    </property>
+                    <property name="sizeType">
+                        <enum>Expanding</enum>
+                    </property>
+                    <property name="sizeHint">
+                        <size>
+                            <width>231</width>
+                            <height>20</height>
+                        </size>
+                    </property>
+                </spacer>
+                <widget class="QPushButton">
+                    <property name="name">
+                        <cstring>pushButton11</cstring>
+                    </property>
+                    <property name="text">
+                        <string>&amp;Close</string>
+                    </property>
+                    <property name="accel">
+                        <string>Alt+C</string>
+                    </property>
+                    <property name="default">
+                        <bool>true</bool>
+                    </property>
+                    <property name="iconSet">
+                        <iconset>fileclose.png</iconset>
+                    </property>
+                </widget>
+            </hbox>
+        </widget>
+    </vbox>
+</widget>
+<connections>
+    <connection>
+        <sender>pushButton11</sender>
+        <signal>clicked()</signal>
+        <receiver>AboutDlg</receiver>
+        <slot>accept()</slot>
+    </connection>
+</connections>
+<includes>
+    <include location="local" impldecl="in implementation">aboutdlg.ui.h</include>
+</includes>
+<slots>
+    <slot>setCurrentPage( int page )</slot>
+</slots>
+<functions>
+    <function access="private" specifier="non virtual">init()</function>
+    <function returnType="int">currentPage() const</function>
+</functions>
+<pixmapinproject/>
+<layoutdefaults spacing="6" margin="11"/>
+</UI>
