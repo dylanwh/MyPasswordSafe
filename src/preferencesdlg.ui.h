@@ -18,10 +18,11 @@
  */
 	
 #include "safe.hpp"
+#include <Q3WhatsThis>
 
 void PreferencesDlg::onBrowse()
 {
-    QString filename = QFileDialog::getOpenFileName(
+    QString filename = Q3FileDialog::getOpenFileName(
 	    QString::null, Safe::getTypes(),
 	    this, "file open", "Open a password safe" );
     if(!filename.isEmpty()) {
@@ -98,5 +99,5 @@ void PreferencesDlg::setClearTime(int seconds)
 
 void PreferencesDlg::onHelp()
 {
-	QWhatsThis::enterWhatsThisMode();
+	Q3WhatsThis::enterWhatsThisMode();
 }

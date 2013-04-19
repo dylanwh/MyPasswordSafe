@@ -30,6 +30,9 @@ int IdlePlatform::secondsIdle() { return 0; }
 #else
 
 #include<qapplication.h>
+#include <qdesktopwidget.h>
+#include <QX11Info>
+
 
 #include<X11/Xlib.h>
 #include<X11/Xutil.h>
@@ -88,7 +91,7 @@ int IdlePlatform::secondsIdle()
 {
 	if(!d->ss_info)
 		return 0;
-	if(!XScreenSaverQueryInfo(QApplication::desktop()->screen()->x11Display(), qt_xrootwin(), d->ss_info))
+	if(!XScreenSaverQueryInfo(QApplication::desktop()->screen()->x11Display(), QX11Info::appRootWindow(), d->ss_info))
 		return 0;
 	return d->ss_info->idle / 1000;
 }

@@ -22,6 +22,9 @@
 #include "safe.hpp"
 #include "safeserializer.hpp"
 #include "pwsafe/Util.h"
+//Added by qt3to4:
+#include <Q3TextStream>
+#include <QTextOStream>
 
 class QTextOStream;
 class QString;
@@ -37,10 +40,10 @@ public:
   virtual Safe::Error save(Safe &safe, const QString &path, const QString &def_user);
 
 protected:
-  Safe::Error saveGroup(QTextStream &file, const SafeGroup *group, const QString &group_name = QString::null);
-  Safe::Error saveEntry(QTextStream &file, const SafeEntry *entry, const QString &group_name);
-  void saveText(QTextStream &file, const QString &text);
-  void saveDate(QTextStream &file, const QDateTime &date);
+  Safe::Error saveGroup(Q3TextStream &file, const SafeGroup *group, const QString &group_name = QString::null);
+  Safe::Error saveEntry(Q3TextStream &file, const SafeEntry *entry, const QString &group_name);
+  void saveText(Q3TextStream &file, const QString &text);
+  void saveDate(Q3TextStream &file, const QDateTime &date);
   QString field(QStringList &list, unsigned int field);
 };
 

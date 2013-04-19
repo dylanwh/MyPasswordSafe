@@ -20,6 +20,7 @@
 #define XMLSERIALIZER_HPP
 
 #include "safeserializer.hpp"
+#include <Q3WhatsThis>
 
 class Safe;
 enum Safe::Error;

@@ -20,7 +20,7 @@
 #include <qstringlist.h>
 #include <qstring.h>
 #include <qfile.h>
-#include <qtextstream.h>
+#include <q3textstream.h>
 #include "safe.hpp"
 #include "securedstring.hpp"
 #include "encryptedstring.hpp"
@@ -44,9 +44,9 @@ PlainTextLizer::~PlainTextLizer()
 Safe::Error PlainTextLizer::checkPassword(const QString &path, const SecuredString &password)
 {
   QFile file(path);
-  if(file.open(IO_ReadOnly)) {
-    QTextStream stream(&file);
-    stream.setEncoding(QTextStream::UnicodeUTF8);
+  if(file.open(QIODevice::ReadOnly)) {
+    Q3TextStream stream(&file);
+    stream.setEncoding(Q3TextStream::UnicodeUTF8);
     QString line;
     line = stream.readLine();
     if(line == password.get())
@@ -64,9 +64,9 @@ Safe::Error PlainTextLizer::checkPassword(const QString &path, const SecuredStri
 Safe::Error PlainTextLizer::load(Safe &safe, const QString &path, const EncryptedString &passphrase, const QString &)
 {
   QFile file(path);
-  if(file.open(IO_ReadOnly)) {
-    QTextStream stream(&file);
-    stream.setEncoding(QTextStream::UnicodeUTF8);
+  if(file.open(QIODevice::ReadOnly)) {
+    Q3TextStream stream(&file);
+    stream.setEncoding(Q3TextStream::UnicodeUTF8);
     QString line;
 
     line = stream.readLine();
@@ -135,9 +135,9 @@ Safe::Error PlainTextLizer::load(Safe &safe, const QString &path, const Encrypte
 Safe::Error PlainTextLizer::save(Safe &safe, const QString &path, const QString &)
 {
   QFile file(path);
-  if(file.open(IO_WriteOnly)) {
-    QTextStream stream(&file);
-    stream.setEncoding(QTextStream::UnicodeUTF8);
+  if(file.open(QIODevice::WriteOnly)) {
+    Q3TextStream stream(&file);
+    stream.setEncoding(Q3TextStream::UnicodeUTF8);
     // NOTE: the passphrase is decrypted...AND SAVED TO DISK!!
     SecuredString password(safe.getPassPhrase().get());
     stream << password.get() << endl;
@@ -151,7 +151,7 @@ Safe::Error PlainTextLizer::save(Safe &safe, const QString &path, const QString 
 
 /** Saves a group and all of its children to a stream.
  */
-Safe::Error PlainTextLizer::saveGroup(QTextStream &file, const SafeGroup *group, const QString &group_name)
+Safe::Error PlainTextLizer::saveGroup(Q3TextStream &file, const SafeGroup *group, const QString &group_name)
 {
   Safe::Error ret = Safe::Success;
   SafeGroup::Iterator it(group);
@@ -180,7 +180,7 @@ Safe::Error PlainTextLizer::saveGroup(QTextStream &file, const SafeGroup *group,
 
 /** Saves an individual entry to a stream.
  */
-Safe::Error PlainTextLizer::saveEntry(QTextStream &file, const SafeEntry *entry, const QString &group_name)
+Safe::Error PlainTextLizer::saveEntry(Q3TextStream &file, const SafeEntry *entry, const QString &group_name)
 {
   saveText(file, entry->name());
   saveText(file, entry->user());
@@ -208,7 +208,7 @@ Safe::Error PlainTextLizer::saveEntry(QTextStream &file, const SafeEntry *entry,
 
 /** Help method to save text to a stream.
  */
-void PlainTextLizer::saveText(QTextStream &file, const QString &text)
+void PlainTextLizer::saveText(Q3TextStream &file, const QString &text)
 {
   if(!text.isEmpty())
     file << text;
@@ -217,7 +217,7 @@ void PlainTextLizer::saveText(QTextStream &file, const QString &text)
 
 /** Help method to save dates to a stream.
  */
-void PlainTextLizer::saveDate(QTextStream &file, const QDateTime &date)
+void PlainTextLizer::saveDate(Q3TextStream &file, const QDateTime &date)
 {
   file << date.toString(Qt::ISODate);
   file << '\t';

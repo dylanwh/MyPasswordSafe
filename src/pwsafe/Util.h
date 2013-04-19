@@ -173,7 +173,7 @@ inline int strLength( const wchar_t *str )
 
 inline char * strFind( const char *str, const char *fstr )
 {
-	return strstr( str, fstr );
+	return (char *)strstr( str, (char *)fstr );
 }
 
 #if defined(UNICODE)

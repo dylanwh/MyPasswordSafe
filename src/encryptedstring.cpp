@@ -17,6 +17,8 @@
  */
 #include <time.h>
 #include <iostream>
+#include <string.h>
+#include <stdlib.h>
 #include "pwsafe/Util.h"
 #include "crypto/bfproxy.hpp"
 #include "crypto/sha1.h"
